@@ -23,5 +23,11 @@ Rails.application.routes.draw do
   resources :products
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  root to: 'store#index', as: 'store'
+  scope '(:locale)' do
+    resources :orders
+    resources :line_items
+    resources :carts
+    root 'store#index', as: 'store', via: :all
+  end
+
 end
